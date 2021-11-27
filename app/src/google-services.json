@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "669888246799",
+    "firebase_url": "https://siwon-419b2-default-rtdb.firebaseio.com",
+    "project_id": "siwon-419b2",
+    "storage_bucket": "siwon-419b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669888246799:android:ee3f723141e8723bea5f7a",
+        "android_client_info": {
+          "package_name": "com.example.testproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669888246799-h4p52blqo97u8o8traq87re1gf6eomsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdqgoenT34xUv-WphOtsWc7r6oM1QBs3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669888246799-h4p52blqo97u8o8traq87re1gf6eomsf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
