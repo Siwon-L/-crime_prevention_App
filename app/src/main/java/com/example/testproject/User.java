@@ -22,13 +22,7 @@ public class User {
 
 
     public User(){}
-    public int getStart() {
-        return start;
-    }
 
-    public void setStart(int start) {
-        this.start = start;
-    }
 
     public int getOpen() {
         return open;
