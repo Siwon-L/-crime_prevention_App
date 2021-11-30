@@ -160,8 +160,6 @@ public class testService extends Service {
             if(start==1){
             startForeground(1, notification1.build());
             }
-
-            Toast.makeText(getApplicationContext(),"s"+start,Toast.LENGTH_SHORT).show();
         }
         return START_STICKY;
     }
