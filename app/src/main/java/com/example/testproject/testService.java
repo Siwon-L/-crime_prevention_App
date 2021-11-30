@@ -8,7 +8,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -161,7 +160,6 @@ public class testService extends Service {
             startForeground(1, notification1.build());
             }
 
-            Toast.makeText(getApplicationContext(),"s"+start,Toast.LENGTH_SHORT).show();
         }
         return START_STICKY;
     }
