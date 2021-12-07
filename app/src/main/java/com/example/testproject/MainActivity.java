@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-//백래1
+//백래훈
 
 public class MainActivity extends AppCompatActivity {
     public static MainActivity mainActivity;
