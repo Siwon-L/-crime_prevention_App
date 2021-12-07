@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout humanL,flameL,openL;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-//
     //파이어베이스에서 읽은 변화에 맞게 텍스트와 레이아웃에 변화를 주고 서비스로 데이터를 넘겨주는 메소드
     private int send_Service(int onoff, int S, TextView text, LinearLayout L, int C, Intent intent,int Sv){
         if(onoff==1) {
