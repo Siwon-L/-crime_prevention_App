@@ -27,8 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-//백래훈
-
 public class MainActivity extends AppCompatActivity {
     public static MainActivity mainActivity;
     public static testService testService;
@@ -51,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
 
-
-    private int sensor(int onoff, int S, TextView text, LinearLayout L, int C, Intent intent,int Sv){
+    //파이어베이스에서 읽은 변화에 맞게 텍스트와 레이아웃에 변화를 주고 서비스로 데이터를 넘겨주는 메소드
+    private int send_Service(int onoff, int S, TextView text, LinearLayout L, int C, Intent intent,int Sv){
         if(onoff==1) {
             if (S == 1) {
                 text.setText("감지 됨");
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         humanL=(LinearLayout)findViewById(R.id.humanL);
         flameL=(LinearLayout)findViewById(R.id.flameL);
 
-        pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);//특정 상황에만 포그라운드를 실행할 수 있게 쉐어드프리퍼런스 사용.
         editor = pref.edit();
 
 
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         final Button btncctv = findViewById(R.id.cctvButton);
         final Button btnsetting = findViewById(R.id.btnsetting);
 
-        btnon.setOnClickListener(new View.OnClickListener() {
+        btnon.setOnClickListener(new View.OnClickListener() {//Off버튼
             @Override
             public void onClick(View v) {
                 btnon.setVisibility(View.INVISIBLE);
@@ -123,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
                 appname.setText("OFF");
                 image.setImageResource(R.drawable.disconnect);
                 databaseReference.child("User_01").child("nf").setValue(0);
-                editor.putInt("start", 1);
+                editor.putInt("start", 1);//쉐어드 프리퍼런스에 1값 저장
                 editor.apply();
 
             }
         });
 
-        btnoff.setOnClickListener(new View.OnClickListener() {
+        btnoff.setOnClickListener(new View.OnClickListener() {//on버튼
             @Override
             public void onClick(View v) {
                 btnon.setVisibility(View.VISIBLE);
@@ -138,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(getApplicationContext()).load(R.drawable.connect2).into(image);
                 appname.setText("ON");
                 databaseReference.child("User_01").child("nf").setValue(1);
-                editor.putInt("start", 1);
+                editor.putInt("start", 1);//쉐어드 프리퍼런스
                 editor.apply();
 
             }
@@ -200,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction(Intent.ACTION_MAIN)
                         .addCategory(Intent.CATEGORY_LAUNCHER)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+                //파이어베이스에서 각종 데이터를 읽어 온다
                 nf=user.getNf();
                 openS=user.getOpen();
                 humanS=user.getHuman();
@@ -212,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
                 temp_humionoff=user.getTemp_humi_onoff();
                 temp = user.getTemp();
                 humi = user.getHumi();
+                //쉐어드 프리퍼런스에 값을 가져오고 값이 1이면 서비스에 1값을 보내 포그라운드가 실행
                 start=pref.getInt("start",1);
                 if(start==1){
                     serviceIntent.putExtra("start",1);
@@ -249,16 +248,16 @@ public class MainActivity extends AppCompatActivity {
                 //----------------------------------------------
 
 
-                openC=sensor(openonoff,openS,opentext,openL,openC,serviceIntent,1);
+                openC=send_Service(openonoff,openS,opentext,openL,openC,serviceIntent,1);//만들어 놓은 메소드를 각 센서에 맞게 적용
 
 
                 //----------------------------------------------
 
-                humanC=sensor(humanonoff,humanS,humantext,humanL,humanC,serviceIntent,2);
+                humanC=send_Service(humanonoff,humanS,humantext,humanL,humanC,serviceIntent,2);
                 //----------------------------------------------
 
 
-                flameC=sensor(flameonoff,flameS,flametext,flameL,flameC,serviceIntent,3);
+                flameC=send_Service(flameonoff,flameS,flametext,flameL,flameC,serviceIntent,3);
                 //----------------------------------------------
                 if(temp_humionoff==1) {
 
@@ -291,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //앱이 종료되면 쉐어드 프리퍼런스에 1값을 넣어 다시 실행하였을때 포그라운드가 실행될 수 있도록
         editor.putInt("start", 1);
         editor.apply();
     }
