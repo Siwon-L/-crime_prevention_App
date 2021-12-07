@@ -157,7 +157,7 @@ public class testService extends Service {
             }
             // foreground에서 시작
             if(start==1){
-            startForeground(1, notification1.build());
+                startForeground(1, notification1.build());
             }
 
         }

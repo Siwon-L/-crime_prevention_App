@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    private int siwon=1;
     public static MainActivity mainActivity;
     public static testService testService;
     private RecyclerView.LayoutManager layoutManager;
