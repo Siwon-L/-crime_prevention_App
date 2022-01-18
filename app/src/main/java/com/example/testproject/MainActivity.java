@@ -27,6 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+class Sensor {
+
+}
 
 public class MainActivity extends AppCompatActivity {
     public static MainActivity mainActivity;
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();       //파이어베이스 데이터베이스 연동
         databaseReferenceTime = database.getReference("timeline");
-        databaseReference = database.getReference("User");//DB 테이블 연결
+        databaseReference = database.getReference("User/User_01");//DB 테이블 연결
 
         final Button btnon = findViewById(R.id.btnon);
         final Button btnoff = findViewById(R.id.btnoff);
